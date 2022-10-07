@@ -6,7 +6,7 @@ const cors = require('cors');
 app.use(cors());
 
 app.get('/', router);
-app.get('/:id', router);
+app.get('/api/:id', router);
 
 app.listen(3000, () => {
     console.log('Server is running!');

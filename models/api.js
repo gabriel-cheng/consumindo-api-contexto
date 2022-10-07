@@ -6,7 +6,7 @@ const path = require('path');
 
 router.get('/', express.static('public'));
 
-router.get('/:word', async(req, res) => {
+router.get('/api/:word', async(req, res) => {
     const data = req.params.word;
     const url = `https://contexto.me/machado/pt-br/game/226/${data}`;
     
@@ -16,7 +16,7 @@ router.get('/:word', async(req, res) => {
         headers: {"Content-Type": "application/json"},
     });
 
-    res.send(request.data);
+    res.status(200).send(request.data);
 });
 
 module.exports = router;
