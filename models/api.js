@@ -1,5 +1,10 @@
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
+const app = express();
 const axios = require('axios');
+const path = require('path');
+
+router.get('/', express.static('public'));
 
 router.get('/:word', async(req, res) => {
     const data = req.params.word;

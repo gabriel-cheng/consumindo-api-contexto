@@ -5,6 +5,7 @@ const cors = require('cors');
 
 app.use(cors());
 
+app.get('/', router);
 app.get('/:id', router);
 
 app.listen(3000, () => {
