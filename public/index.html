@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contexto melhorado</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .title-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 50px 0;
+        }
+
+        .interation-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input[type=text] {
+            width: 200px;
+        }
+
+        .verificar {
+            cursor: pointer;
+            margin: 20px 0 20px 0;
+            padding: 10px 80px;
+        }
+
+        p {
+            margin: 0 0 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="title-container">
+            <h1>Contexto 100% melhorado papai</h1>
+        </div>
+        <div class="interation-container">
+            <input type="text" name="" id="palavra">
+            <button onclick="verificar();" class="verificar">Verificar</button>
+            <div class="container"></div>
+        </div>
+    </main>
+
+    <script>
+        const palavra = document.querySelector('#palavra');
+        const container = document.querySelector('.container');
+
+        async function verificar() {
+            const param = palavra.value;
+            let arr = [];
+
+            const data = await fetch(`http://localhost:3000/${param}`, {
+                method: 'GET',
+                headers: {"Content-Type": "application/json"}
+            });
+
+            const reqData = await data.json();
+
+            arr.push(reqData.distance, reqData.word)
+
+            let p = document.createElement('p');
+            p.innerHTML = `Distância: ${arr[0]}<br>Palavra: ${arr[1]}`;
+
+            container.appendChild(p);
+        }
+    </script>
+</body>
+</html>
